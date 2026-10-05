@@ -1,0 +1,681 @@
+/* ==========================================
+   ECHO STUDY SPACE
+   SEAT BOOKING
+   ========================================== */
+
+
+/* ==========================================
+   RESET
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ==========================================
+   BODY
+   ========================================== */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f7f9f6;
+
+    color: #1f2d25;
+
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+   ========================================== */
+
+.booking-container {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 40px 20px;
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.header h1 {
+
+    color: #174d36;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+.header p {
+
+    color: #65736b;
+
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   CARDS
+   ========================================== */
+
+.booking-card {
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #e5ebe7;
+
+    box-shadow:
+        0 4px 16px
+        rgba(23, 77, 54, 0.06);
+}
+
+.booking-card h2 {
+
+    color: #174d36;
+
+    font-size: 19px;
+
+    margin-bottom: 18px;
+}
+
+
+/* ==========================================
+   ROW BUTTONS
+   ========================================== */
+
+.row-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 10px;
+}
+
+.row-btn {
+
+    border: 1px solid #d5dfd9;
+
+    background: #ffffff;
+
+    color: #174d36;
+
+    padding: 12px 8px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.row-btn:hover {
+
+    border-color: #174d36;
+
+    background: #f0f6f2;
+}
+
+.row-btn.active {
+
+    background: #174d36;
+
+    color: #ffffff;
+
+    border-color: #174d36;
+}
+
+
+/* ==========================================
+   TABLE HEADER
+   ========================================== */
+
+.table-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+#loading {
+
+    font-size: 13px;
+
+    color: #7a8780;
+}
+
+
+/* ==========================================
+   TABLE
+   ========================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+th {
+
+    text-align: left;
+
+    padding: 13px 12px;
+
+    background: #f3f6f4;
+
+    color: #526159;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+td {
+
+    padding: 14px 12px;
+
+    border-bottom:
+        1px solid #edf0ee;
+
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+
+    border-bottom: none;
+}
+
+
+/* Fixed column widths */
+
+th:nth-child(1),
+td:nth-child(1) {
+
+    width: 25%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+
+    width: 35%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+
+    width: 40%;
+}
+
+
+/* ==========================================
+   SEAT ROW
+   ========================================== */
+
+.seat-row {
+
+    cursor: default;
+
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+/* Available row */
+
+.seat-row.available {
+
+    cursor: pointer;
+}
+
+.seat-row.available:hover {
+
+    background: #f4f8ff;
+}
+
+
+/* Selected row */
+
+.seat-row.selected {
+
+    background: #eaf2ff;
+
+    box-shadow:
+        inset 4px 0 0 #2f6fed;
+}
+
+
+/* ==========================================
+   SEAT NUMBER
+   ========================================== */
+
+.seat-number {
+
+    font-weight: 500;
+
+    color: #174d36;
+}
+
+
+/* Selected seat */
+
+.seat-row.selected .seat-number {
+
+    color: #245dcc;
+
+    font-weight: 700;
+}
+
+
+/* Check mark */
+
+.seat-check {
+
+    display: inline-block;
+
+    width: 20px;
+
+    height: 20px;
+
+    line-height: 20px;
+
+    text-align: center;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: #2f6fed;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   STATUS
+   ========================================== */
+
+.status-available {
+
+    color: #16834a;
+
+    font-weight: 600;
+}
+
+.status-occupied {
+
+    color: #c0392b;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   EXPIRY
+   ========================================== */
+
+.expiry {
+
+    color: #59665e;
+}
+
+
+/* ==========================================
+   SELECTED SEAT BOX
+   ========================================== */
+
+.selection-box {
+
+    background: #174d36;
+
+    color: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 20px 24px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(23, 77, 54, 0.15);
+}
+
+.selection-box p {
+
+    font-size: 15px;
+}
+
+.selection-box strong {
+
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   PROCEED BUTTON
+   ========================================== */
+
+#proceed-btn {
+
+    border: none;
+
+    background: #ffffff;
+
+    color: #174d36;
+
+    padding: 11px 22px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#proceed-btn:hover {
+
+    background: #edf5ef;
+}
+
+
+/* ==========================================
+   BOOKING FORM
+   ========================================== */
+
+.form-header {
+
+    margin-bottom: 20px;
+}
+
+.form-header h2 {
+
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+
+/* Change seat */
+
+.change-seat-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: #174d36;
+
+    padding: 0;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.change-seat-btn:hover {
+
+    text-decoration: underline;
+}
+
+
+/* Form group */
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #37453d;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.form-group label span {
+
+    color: #8a958e;
+
+    font-weight: 400;
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid #d7dfda;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #1f2d25;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #174d36;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(23, 77, 54, 0.08);
+}
+
+.form-group input::placeholder {
+
+    color: #9aa49e;
+}
+
+
+/* Selected seat field */
+
+#form-seat {
+
+    background: #f3f6f4;
+
+    color: #174d36;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   BOOK BUTTON
+   ========================================== */
+
+#book-btn {
+
+    width: 100%;
+
+    border: none;
+
+    background: #174d36;
+
+    color: #ffffff;
+
+    padding: 13px 20px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+#book-btn:hover {
+
+    background: #123d2b;
+}
+
+
+/* ==========================================
+   HIDDEN
+   ========================================== */
+
+.hidden {
+
+    display: none !important;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .booking-container {
+
+        padding:
+            25px 14px;
+    }
+
+    .header h1 {
+
+        font-size: 27px;
+    }
+
+    .booking-card {
+
+        padding: 18px;
+
+        border-radius: 14px;
+    }
+
+    .row-buttons {
+
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    .selection-box {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+    }
+
+    #proceed-btn {
+
+        width: 100%;
+    }
+
+    th,
+    td {
+
+        padding:
+            12px 9px;
+    }
+
+    .seat-check {
+
+        width: 18px;
+
+        height: 18px;
+
+        line-height: 18px;
+
+        margin-right: 4px;
+    }
+}

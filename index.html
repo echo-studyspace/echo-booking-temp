@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ECHO Study Space - Seat Booking</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="booking-container">
+
+
+        <!-- =========================
+             HEADER
+             ========================= -->
+
+        <section class="header">
+
+            <h1>ECHO Study Space</h1>
+
+            <p>
+                Choose your preferred study seat
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             ROW SELECTION
+             ========================= -->
+
+        <section class="booking-card">
+
+            <h2>Select Row</h2>
+
+            <div class="row-buttons">
+
+                <button
+                    class="row-btn"
+                    data-row="A"
+                >
+                    A
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="B"
+                >
+                    B
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="C"
+                >
+                    C
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="D"
+                >
+                    D
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="E"
+                >
+                    E
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="F"
+                >
+                    F
+                </button>
+
+                <button
+                    class="row-btn"
+                    data-row="G"
+                >
+                    G
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SEAT TABLE
+             ========================= -->
+
+        <section
+            id="seat-section"
+            class="booking-card"
+        >
+
+            <div class="table-header">
+
+                <h2 id="seat-title">
+                    Select a row
+                </h2>
+
+                <span id="loading">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Seat
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Expiry
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="seat-table-body">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SELECTED SEAT
+             ========================= -->
+
+        <section
+            id="selection-box"
+            class="selection-box hidden"
+        >
+
+            <p>
+
+                Selected seat:
+
+                <strong id="selected-seat">
+                </strong>
+
+            </p>
+
+
+            <button id="proceed-btn">
+
+                Proceed
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             BOOKING FORM
+             ========================= -->
+
+        <section
+            id="booking-form-section"
+            class="booking-card hidden"
+        >
+
+            <div class="form-header">
+
+                <button
+                    type="button"
+                    id="change-seat-btn"
+                    class="change-seat-btn"
+                >
+                    ← Change Seat
+                </button>
+
+                <h2>
+                    Booking Details
+                </h2>
+
+            </div>
+
+
+            <form id="booking-form">
+
+
+                <!-- Selected Seat -->
+
+                <div class="form-group">
+
+                    <label for="form-seat">
+                        Selected Seat
+                    </label>
+
+                    <input
+                        type="text"
+                        id="form-seat"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- Full Name -->
+
+                <div class="form-group">
+
+                    <label for="full-name">
+                        Full Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="full-name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Mobile -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        placeholder="Enter your mobile number"
+                        inputmode="numeric"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Plan -->
+
+                <div class="form-group">
+
+                    <label for="plan">
+                        Select Plan *
+                    </label>
+
+                    <select
+                        id="plan"
+                        required
+                    >
+
+                        <option value="">
+                            Select a plan
+                        </option>
+
+                        <option value="3 Hour">
+                            3 Hour
+                        </option>
+
+                        <option value="7 Hour">
+                            7 Hour
+                        </option>
+
+                        <option value="12 Hour">
+                            12 Hour
+                        </option>
+
+                        <option value="1 Day">
+                            1 Day
+                        </option>
+
+                        <option value="7 Day">
+                            7 Day
+                        </option>
+
+                        <option value="1 Month">
+                            1 Month
+                        </option>
+
+                        <option value="3 Month">
+                            3 Month
+                        </option>
+
+                        <option value="6 Month">
+                            6 Month
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Start Date -->
+
+                <div class="form-group">
+
+                    <label for="start-date">
+                        Start Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="start-date"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Start Time -->
+
+                <div
+                    class="form-group hidden"
+                    id="start-time-group"
+                >
+
+                    <label for="start-time">
+                        Start Time *
+                    </label>
+
+                    <input
+                        type="time"
+                        id="start-time"
+                    >
+
+                </div>
+
+
+
+                <!-- Course / Exam -->
+
+                <div class="form-group">
+
+                    <label for="course">
+                        Course / Exam *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="Example: BCA, NEET, PSC"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- How they found ECHO -->
+
+                <div class="form-group">
+
+                    <label for="info">
+
+                        How did you hear about ECHO?
+
+                        <span>
+                            (Optional)
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="info"
+                        placeholder="Instagram, Google, Friend..."
+                    >
+
+                </div>
+
+
+
+                <!-- Book Button -->
+
+                <button
+                    type="submit"
+                    id="book-btn"
+                >
+                    Book Now
+                </button>
+
+
+            </form>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
